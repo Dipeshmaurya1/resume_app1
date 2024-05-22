@@ -12,6 +12,7 @@ class ContactInfo extends StatefulWidget {
 
   @override
   State<ContactInfo> createState() => _ContactInfoState();
+
 }
 TextEditingController txtname = TextEditingController();
 TextEditingController txtemail = TextEditingController();
