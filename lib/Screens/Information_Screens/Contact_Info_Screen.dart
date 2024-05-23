@@ -17,7 +17,9 @@ class ContactInfo extends StatefulWidget {
   @override
   State<ContactInfo> createState() => _ContactInfoState();
 }
-
+TextEditingController txtskill = TextEditingController();
+TextEditingController txtstren = TextEditingController();
+TextEditingController txthobby = TextEditingController();
 TextEditingController txtname = TextEditingController();
 TextEditingController txtemail = TextEditingController();
 TextEditingController txtcontact = TextEditingController();
@@ -36,7 +38,7 @@ class _ContactInfoState extends State<ContactInfo> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: DefaultTabController(
-      length: 7,
+      length: 5,
       child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
@@ -56,34 +58,34 @@ class _ContactInfoState extends State<ContactInfo> {
                 ),
                 Tab(
                   child: Text(
-                    'Career Objective',
+                    'Education',
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
                 Tab(
                   child: Text(
-                    'Career Objective',
+                    'Skills',
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
                 Tab(
                   child: Text(
-                    'Career Objective',
+                    'Strength & Hobbies',
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
-                Tab(
-                  child: Text(
-                    'Career Objective',
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    'Career Objective',
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                ),
+                // Tab(
+                //   child: Text(
+                //     'Career Objective',
+                //     style: TextStyle(fontSize: 15, color: Colors.white),
+                //   ),
+                // ),
+                // Tab(
+                //   child: Text(
+                //     'Career Objective',
+                //     style: TextStyle(fontSize: 15, color: Colors.white),
+                //   ),
+                // ),
               ],
             ),
             title: Text(
@@ -232,16 +234,248 @@ class _ContactInfoState extends State<ContactInfo> {
                 ),
               ),
               SummaryHeadingScreen(),
-              EducationScreen(),
+              Column(
+                children: [],
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Skills',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.teal.shade300,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    // TextFormField(
+                    //   keyboardType: TextInputType.multiline,
+                    //   textInputAction: TextInputAction.newline,
+                    //   maxLines: null,
+                    //   controller: txtobjective,
+                    //   decoration: InputDecoration(
+                    //       hintText: 'Career Objective',
+                    //       focusedBorder: OutlineInputBorder(
+                    //           borderSide: BorderSide(
+                    //               color: Colors.teal.shade300, width: 3)),
+                    //       border: OutlineInputBorder(
+                    //         borderRadius:
+                    //         BorderRadius.only(bottomLeft: Radius.zero),
+                    //       )),
+                    // ),
+                    ...List.generate(Skill_ControllerList.length, (index) => Column(
+                      children: [
+                        TextFormField(
+                                              // maxLines: ,
+                          decoration: InputDecoration(
+                              hintText: 'Skills', //expHint_Text
+                              enabledBorder: OutlineInputBorder(
+
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                // borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: Colors.teal.shade300,
+                                              // width: 1,
+                                ),
+                              )),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     TextEditingController txteducation=TextEditingController();
+                            //     setState(() {
+                            //       Education_ControllerList.add(ControllerModel_Skill(txtSkill: txteducation));
+                            //     });
+                            //   },
+                            //   child: Icon(Icons.add_circle_outline_rounded, size: 40,
+                            //     color: Colors.teal.shade300,),
+                            // ),
+                            GestureDetector(
+                              onTap: () {
+                                // TextEditingController txteducation=TextEditingController();
+                                setState(() {
+                                  Skill_ControllerList.removeAt(index);
+                                });
+                              },
+                              child: Icon(Icons.cancel_outlined, size: 40,
+                                color: Colors.teal.shade300,),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height:20,),
+                      ]
+                      ,
+                    ),),
+                    GestureDetector(
+                      onTap: () {
+                        TextEditingController txteducation=TextEditingController();
+                        setState(() {
+                          Skill_ControllerList.add(ControllerModel_Skill(txtSkill: txtskill));
+                        });
+                      },
+                      child: Icon(Icons.add_circle_outline_rounded, size: 40,
+                        color: Colors.teal.shade300,),
+                    ),
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Strength',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.teal.shade300,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    ...List.generate(Stren_ControllerList.length, (index) => Column(
+                      children: [
+                        TextFormField(
+                          // maxLines: ,
+                          decoration: InputDecoration(
+                              hintText: 'Strength', //expHint_Text
+                              enabledBorder: OutlineInputBorder(
+
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                // borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: Colors.teal.shade300,
+                                  // width: 1,
+                                ),
+                              )),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     TextEditingController txteducation=TextEditingController();
+                            //     setState(() {
+                            //       Education_ControllerList.add(ControllerModel_Skill(txtSkill: txteducation));
+                            //     });
+                            //   },
+                            //   child: Icon(Icons.add_circle_outline_rounded, size: 40,
+                            //     color: Colors.teal.shade300,),
+                            // ),
+                            GestureDetector(
+                              onTap: () {
+                                // TextEditingController txteducation=TextEditingController();
+                                setState(() {
+                                  Stren_ControllerList.removeAt(index);
+                                });
+                              },
+                              child: Icon(Icons.cancel_outlined, size: 40,
+                                color: Colors.teal.shade300,),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height:20,),
+                      ]
+                      ,
+                    ),),
+                    GestureDetector(
+                      onTap: () {
+                        TextEditingController txteducation=TextEditingController();
+                        setState(() {
+                          Stren_ControllerList.add(ControllerModel_Stre(txtStren: txtstren));
+                        });
+                      },
+                      child: Icon(Icons.add_circle_outline_rounded, size: 40,
+                        color: Colors.teal.shade300,),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Hobbies',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.teal.shade300,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    ...List.generate(Hobby_ControllerList.length, (index) => Column(
+                      children: [
+                        TextFormField(
+                          // maxLines: ,
+                          decoration: InputDecoration(
+                              hintText: 'Hobbies', //expHint_Text
+                              enabledBorder: OutlineInputBorder(
+
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                // borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: Colors.teal.shade300,
+                                  // width: 1,
+                                ),
+                              )),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     TextEditingController txteducation=TextEditingController();
+                            //     setState(() {
+                            //       Education_ControllerList.add(ControllerModel_Skill(txtSkill: txteducation));
+                            //     });
+                            //   },
+                            //   child: Icon(Icons.add_circle_outline_rounded, size: 40,
+                            //     color: Colors.teal.shade300,),
+                            // ),
+                            GestureDetector(
+                              onTap: () {
+                                // TextEditingController txteducation=TextEditingController();
+                                setState(() {
+                                  Hobby_ControllerList.removeAt(index);
+                                });
+                              },
+                              child: Icon(Icons.cancel_outlined, size: 40,
+                                color: Colors.teal.shade300,),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height:20,),
+                      ]
+                      ,
+                    ),),
+                    GestureDetector(
+                      onTap: () {
+                        TextEditingController txteducation=TextEditingController();
+                        setState(() {
+                          Hobby_ControllerList.add(ControllerModel_Hobby(txtHobby: txthobby));
+                        });
+                      },
+                      child: Icon(Icons.add_circle_outline_rounded, size: 40,
+                        color: Colors.teal.shade300,),
+                    ),
+                  ],
+                ),
+              ),
+
 
             ],
-          )),
+          ),
+      ),
     ));
   }
-
-
-
-
 
   String gender = 'Male';
 
@@ -308,3 +542,29 @@ class _ContactInfoState extends State<ContactInfo> {
     );
   }
 }
+
+class ControllerModel_Skill
+{
+  TextEditingController? txtSkill;
+  ControllerModel_Skill({this.txtSkill});
+}
+List<ControllerModel_Skill> Skill_ControllerList=[
+  ControllerModel_Skill(txtSkill: txtskill)
+];
+
+class ControllerModel_Stre
+{
+  TextEditingController? txtStren;
+  ControllerModel_Stre({this.txtStren});
+}
+List<ControllerModel_Stre> Stren_ControllerList=[
+  ControllerModel_Stre(txtStren: txtstren),
+];
+class ControllerModel_Hobby
+{
+  TextEditingController? txtHobby;
+  ControllerModel_Hobby({this.txtHobby});
+}
+List<ControllerModel_Hobby> Hobby_ControllerList=[
+  ControllerModel_Hobby(txtHobby: txthobby),
+];
